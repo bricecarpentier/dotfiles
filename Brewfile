@@ -40,6 +40,7 @@ brew 'youtube-dl'
 
 cask '1password'
 cask 'atom'
+cask 'fastlane'
 cask 'firefox'
 cask 'github-desktop'
 cask 'google-chrome'
