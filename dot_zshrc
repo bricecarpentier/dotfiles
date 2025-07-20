@@ -13,6 +13,7 @@ bindkey -e # Force emacs mode for zsh
 #
 alias cm="chezmoi"
 alias vi="nvim"
+alias vim="nvim"
 alias wow="git status"
 
 
