@@ -16,7 +16,6 @@ cask = [
 [packages.linux]
 apt = [
   "git",
-  "nvim",
-  "starship",
+  "neovim",
   "zoxide"
 ]
