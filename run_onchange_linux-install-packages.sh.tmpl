@@ -7,7 +7,7 @@ sudo apt install -y \
 {{ . | quote }} \
 {{ end }}
 
-curl -sS https://starship.rs/install.sh | sh
+curl -sS https://starship.rs/install.sh | sh -s -- --yes=1
 
 
 {{ end }}
