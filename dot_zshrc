@@ -1,12 +1,19 @@
 export EDITOR=nvim # what else?
 
-# Force emacs mode for zsh
-bindkey -e
+#
+# CLI sanity
+#
+eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"
 
+bindkey -e # Force emacs mode for zsh
+
+#
 # Aliases
-
+#
 alias cm="chezmoi"
 alias vi="nvim"
 alias wow="git status"
+
 
 [ -f $HOME/.zshrc.extras ] && . $HOME/.zshrc.extras

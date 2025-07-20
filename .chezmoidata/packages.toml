@@ -1,0 +1,13 @@
+[packages]
+
+[packages.darwin]
+brew = [
+  "btop",
+  "git",
+  "nvim",
+  "starship",
+  "zoxide"
+]
+cask = [
+  "google-chrome"
+]
