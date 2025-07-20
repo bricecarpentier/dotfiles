@@ -15,12 +15,56 @@ if not vim.loop.fs_stat(mini_path) then
   vim.cmd('packadd mini.nvim | helptags ALL')
   vim.cmd('echo "Installed `mini.nvim`" | redraw')
 end
+-- Mini.deps
+require('mini.deps').setup({ path = { package = path_package } })
+local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 
+
+-- Basic config
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 vim.o.relativenumber = true
 vim.o.number = true
 
+--
+-- NOW
+--
+
+-- Theme
+now(function()
+  add({ source = 'navarasu/onedark.nvim' })
+  require('onedark').load()
+  vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
+  vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
+  vim.api.nvim_set_hl(0, 'FloatBorder', { bg = 'none' })
+  vim.api.nvim_set_hl(0, 'Pmenu', { bg = 'none' })
+end)
+
+now(function()
+  require('mini.icons').setup()
+end)
 
 
+now(function()
+  add({
+    source = 'stevearc/oil.nvim',
+    depends = {
+      'echasnovski/mini.icons'
+    }
+  })
+  require('oil').setup({
+    default_file_explorer = true,
+    colums = {
+      "icons"
+    }
+  })
+end)
+
+now(function()
+  add({ source = 'folke/snacks.nvim' })
+end)
+
+--
+-- LATER
+--
