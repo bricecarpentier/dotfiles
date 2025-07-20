@@ -4,10 +4,19 @@
 brew = [
   "btop",
   "git",
+  "gh",
   "nvim",
   "starship",
   "zoxide"
 ]
 cask = [
   "google-chrome"
+]
+
+[packages.linux]
+apt = [
+  "git",
+  "nvim",
+  "starship",
+  "zoxide"
 ]
