@@ -1,0 +1,18 @@
+format = "$character"
+right_format = "$directory$git_branch$username$hostname"
+
+add_newline = true
+
+[directory]
+format = '[$path]($style)[$read_only]($read_only_style)'
+
+[git_branch]
+format = ' [\($branch(:$remote_branch)\)]($style)'
+
+[hostname]
+format = '[@$ssh_symbol$hostname]($style)\]'
+ssh_only = true
+
+[username]
+format = ' \[[$user]($style)'
+show_always = false
