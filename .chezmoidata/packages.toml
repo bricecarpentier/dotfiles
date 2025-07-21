@@ -5,12 +5,22 @@ brew = [
   "btop",
   "git",
   "gh",
+  "gpg",
+  "httpie",
   "nvim",
   "starship",
   "zoxide"
 ]
 cask = [
-  "google-chrome"
+  "firefox",
+  "font-zed-mono-nerd-font",
+  "ghostty",
+  "google-chrome",
+  "linearmouse",
+  "raycast",
+  "visual-studio-code",
+  "whatsapp",
+  "zed"
 ]
 
 [packages.linux]
