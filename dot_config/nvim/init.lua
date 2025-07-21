@@ -62,9 +62,22 @@ now(function()
 end)
 
 now(function()
-  add({ source = 'folke/snacks.nvim' })
+  add({
+    source = 'folke/snacks.nvim',
+    opts = {
+      gitbrowse = {},
+      lazygit = {}
+    }
+})
 end)
 
 --
 -- LATER
 --
+
+--
+-- KEYMAPS
+--
+vim.api.nvim_set_keymap('n', '<leader>e', ':Oil<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>gB', function() Snacks.gitbrowse() end, { noremap = true, silent = true })
+vim.api.nvim_create_user_command('LazyGit', function() Snacks.LazyGit() end, {})
