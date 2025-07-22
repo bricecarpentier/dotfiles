@@ -9,6 +9,7 @@ sudo apt install -y \
 
 curl -sS https://starship.rs/install.sh | sh -s -- --yes=1
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+source "$HOME/.cargo/env"
 cargo install bob-nvim --locked
 bob use stable
 
