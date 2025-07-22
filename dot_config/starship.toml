@@ -1,5 +1,5 @@
 format = "$character"
-right_format = "$directory$git_branch$username$hostname"
+right_format = "$directory$git_branch$username$hostname$time"
 
 add_newline = true
 
@@ -12,6 +12,10 @@ format = ' [\($branch(:$remote_branch)\)]($style)'
 [hostname]
 format = '[@$ssh_symbol$hostname]($style)\]'
 ssh_only = true
+
+[time]
+format = ' \[[$time]($style)\]'
+disabled = false
 
 [username]
 format = ' \[[$user]($style)'
