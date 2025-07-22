@@ -13,6 +13,7 @@ brew = [
 ]
 cask = [
   "firefox",
+  "font-jetbrains-mono-nerd-font",
   "font-zed-mono-nerd-font",
   "ghostty",
   "google-chrome",
