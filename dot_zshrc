@@ -11,6 +11,7 @@ bindkey -e # Force emacs mode for zsh
 #
 # Env
 #
+source "$HOME/.cargo/env"
 PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
 
 #
