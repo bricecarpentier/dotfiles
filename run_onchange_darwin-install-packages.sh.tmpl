@@ -8,6 +8,9 @@ brew {{ . | quote }}
 {{ range .packages.darwin.cask -}}
 cask {{ . | quote }}
 {{ end -}}
+
 EOF
 {{ end -}}
 
+# Nvim version manager
+bob use stable

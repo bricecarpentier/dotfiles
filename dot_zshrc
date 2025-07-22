@@ -9,6 +9,11 @@ eval "$(starship init zsh)"
 bindkey -e # Force emacs mode for zsh
 
 #
+# Env
+#
+PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
+
+#
 # Aliases
 #
 alias cm="chezmoi"

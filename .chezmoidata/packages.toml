@@ -2,12 +2,12 @@
 
 [packages.darwin]
 brew = [
+  "bob",
   "btop",
   "git",
   "gh",
   "gpg",
   "httpie",
-  "nvim",
   "starship",
   "zoxide"
 ]
@@ -26,6 +26,5 @@ cask = [
 [packages.linux]
 apt = [
   "git",
-  "neovim",
   "zoxide"
 ]
