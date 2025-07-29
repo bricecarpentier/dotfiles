@@ -17,6 +17,7 @@ if not vim.loop.fs_stat(mini_path) then
 end
 -- Mini.deps
 require('mini.deps').setup({ path = { package = path_package } })
+
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 
 
@@ -26,6 +27,9 @@ vim.g.maplocalleader = ' '
 
 vim.o.relativenumber = true
 vim.o.number = true
+
+vim.o.signcolumn = "yes"
+vim.o.wrap = false
 
 --
 -- NOW
@@ -45,7 +49,6 @@ now(function()
   require('mini.icons').setup()
 end)
 
-
 now(function()
   add({
     source = 'stevearc/oil.nvim',
@@ -61,12 +64,14 @@ now(function()
   })
 end)
 
-now(function()
+later(function()
   add({
     source = 'folke/snacks.nvim',
     opts = {
+      explorer = {},
       gitbrowse = {},
-      lazygit = {}
+      lazygit = {},
+      picker = {}
     }
 })
 end)
@@ -78,6 +83,15 @@ end)
 --
 -- KEYMAPS
 --
-vim.api.nvim_set_keymap('n', '<leader>e', ':Oil<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>gB', function() Snacks.gitbrowse() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>e', ':Oil<CR>', { silent = true })
+vim.keymap.set('n', '<leader>t', function() Snacks.explorer() end, { silent = true })
+vim.keymap.set('n', '<leader>gB', function() Snacks.gitbrowse() end, { silent = true })
+vim.keymap.set('n', '<leader>f', function() Snacks.picker.files() end, { silent = true })
+vim.keymap.set('n', '<leader>h', function() Snacks.picker.help() end, { silent = true })
+vim.keymap.set('', '<C-h>', ':wincmd h<CR>', { remap = true, silent = true })
+vim.keymap.set('', '<C-j>', ':wincmd j<CR>', { remap = true, silent = true })
+vim.keymap.set('', '<C-k>', ':wincmd k<CR>', { remap = true, silent = true })
+vim.keymap.set('', '<C-l>', ':wincmd l<CR>', { remap = true, silent = true })
+
 vim.api.nvim_create_user_command('LazyGit', function() Snacks.LazyGit() end, {})
+
