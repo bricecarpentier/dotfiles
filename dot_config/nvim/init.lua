@@ -1,4 +1,4 @@
---
+
 -- Mini.nvim
 --
 local path_package = vim.fn.stdpath('data') .. '/site'
@@ -64,6 +64,10 @@ now(function()
   })
 end)
 
+--
+-- LATER
+--
+
 later(function()
   add({
     source = 'folke/snacks.nvim',
@@ -76,9 +80,18 @@ later(function()
 })
 end)
 
---
--- LATER
---
+later(function()
+  add({
+    source = 'folke/flash.nvim',
+    keys = {
+      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+    }
+  })
+end)
 
 --
 -- KEYMAPS
@@ -92,6 +105,9 @@ vim.keymap.set('', '<C-h>', ':wincmd h<CR>', { remap = true, silent = true })
 vim.keymap.set('', '<C-j>', ':wincmd j<CR>', { remap = true, silent = true })
 vim.keymap.set('', '<C-k>', ':wincmd k<CR>', { remap = true, silent = true })
 vim.keymap.set('', '<C-l>', ':wincmd l<CR>', { remap = true, silent = true })
+vim.keymap.set({ 'n', 'x', 'o' }, 's', function() require("flash").jump() end, { silent = true })
+vim.keymap.set('o', 'r', function() require("flash").remote() end, { silent = true })
+vim.keymap.set('c', '<c-s>', function() require("flash").toggle() end, { silent = true })
 
 vim.api.nvim_create_user_command('LazyGit', function() Snacks.LazyGit() end, {})
 
