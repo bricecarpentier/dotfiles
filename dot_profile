@@ -1,0 +1,13 @@
+preferred_shell=
+if [ -x /opt/homebrew/bin/zsh ]; then
+  preferred_shell=/opt/homebrew/bin/zsh
+elif [ -x /bin/zsh ]; then
+  preferred_shell=/bin/zsh
+fi
+
+if [ -n "$preferred_shell" ]; then
+  case $- in
+    *i*) SHELL=$preferred_shell; export SHELL; exec "$preferred_shell";;
+  esac
+fi
+
