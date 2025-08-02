@@ -9,7 +9,8 @@ brew = [
   "gpg",
   "httpie",
   "starship",
-  "zoxide"
+  "zoxide",
+  "zsh"
 ]
 cask = [
   "firefox",
@@ -27,5 +28,6 @@ cask = [
 [packages.linux]
 apt = [
   "git",
-  "zoxide"
+  "zoxide",
+  "zsh"
 ]
