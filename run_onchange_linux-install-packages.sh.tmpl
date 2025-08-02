@@ -1,8 +1,8 @@
 {{ if eq .chezmoi.os "linux" -}}
 #!/bin/sh
 
-sudo apt update -y
-sudo DEBIAN_FRONTEND=noninteractive apt install -y \
+sudo apt-get update -y
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y \
 {{ range .packages.linux.apt -}}
 {{ . | quote }} \
 {{ end }}
