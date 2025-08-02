@@ -2,7 +2,7 @@
 #!/bin/sh
 
 sudo apt update -y
-sudo apt install -y \
+DEBIAN_FRONTEND=noninteractive sudo apt install -y \
 {{ range .packages.linux.apt -}}
 {{ . | quote }} \
 {{ end }}
