@@ -92,6 +92,20 @@ now(function()
         automatic_enable = { 'lua_ls' }
     })
 end)
+--
+--
+-- LazyDev
+add({
+    source = 'folke/lazydev.nvim',
+    ft = 'lua',
+    enabled = true
+})
+later(function()
+    vim.g.lazydev_enable = true
+    require('lazydev').setup()
+end)
+
+
 
 -- Completion
 add({ source = 'saghen/blink.cmp' })
