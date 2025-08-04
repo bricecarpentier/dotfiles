@@ -1,19 +1,18 @@
-
 -- Mini.nvim
 --
 local path_package = vim.fn.stdpath('data') .. '/site'
 local mini_path = path_package .. '/pack/deps/start/mini.nvim'
 if not vim.loop.fs_stat(mini_path) then
-  vim.cmd('echo "Installing `mini.nvim`" | redraw')
-  local clone_cmd = {
-    'git', 'clone', '--filter=blob:none',
-    -- Uncomment next line to use 'stable' branch
-    -- '--branch', 'stable',
-    'https://github.com/echasnovski/mini.nvim', mini_path
-  }
-  vim.fn.system(clone_cmd)
-  vim.cmd('packadd mini.nvim | helptags ALL')
-  vim.cmd('echo "Installed `mini.nvim`" | redraw')
+    vim.cmd('echo "Installing `mini.nvim`" | redraw')
+    local clone_cmd = {
+        'git', 'clone', '--filter=blob:none',
+        -- Uncomment next line to use 'stable' branch
+        -- '--branch', 'stable',
+        'https://github.com/echasnovski/mini.nvim', mini_path
+    }
+    vim.fn.system(clone_cmd)
+    vim.cmd('packadd mini.nvim | helptags ALL')
+    vim.cmd('echo "Installed `mini.nvim`" | redraw')
 end
 -- Mini.deps
 require('mini.deps').setup({ path = { package = path_package } })
@@ -37,17 +36,17 @@ vim.o.winborder = "rounded"
 vim.o.exrc = true
 
 now(function()
-  require('mini.icons').setup()
+    require('mini.icons').setup()
 end)
 
 -- Theme
 add({ source = 'navarasu/onedark.nvim' }) -- Theme
 now(function()
-  require('onedark').load()
-  vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
-  vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
-  vim.api.nvim_set_hl(0, 'FloatBorder', { bg = 'none' })
-  vim.api.nvim_set_hl(0, 'Pmenu', { bg = 'none' })
+    require('onedark').load()
+    vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
+    vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
+    vim.api.nvim_set_hl(0, 'FloatBorder', { bg = 'none' })
+    vim.api.nvim_set_hl(0, 'Pmenu', { bg = 'none' })
 end)
 
 -- Motions
@@ -55,31 +54,31 @@ add({ source = 'folke/flash.nvim' })
 
 -- File explorer
 add({
-  source = 'stevearc/oil.nvim',
-  depends = {
-    'echasnovski/mini.icons'
-  }
+    source = 'stevearc/oil.nvim',
+    depends = {
+        'echasnovski/mini.icons'
+    }
 })
 now(function()
-  require('oil').setup({
-    default_file_explorer = true,
-    colums = {
-      "icons"
-    }
-  })
+    require('oil').setup({
+        default_file_explorer = true,
+        colums = {
+            "icons"
+        }
+    })
 end)
 
 -- Various QoL from folke
 add({
-  source = 'folke/snacks.nvim',
-  opts = {
-    explorer = { enabled = true },
-    gitbrowse = { enabled = true },
-    lazygit = { enabled = true },
-    notifier = { enabled = true },
-    notify = { enabled = true },
-    picker = { enabled = true }
-  }
+    source = 'folke/snacks.nvim',
+    opts = {
+        explorer = { enabled = true },
+        gitbrowse = { enabled = true },
+        lazygit = { enabled = true },
+        notifier = { enabled = true },
+        notify = { enabled = true },
+        picker = { enabled = true }
+    }
 })
 
 -- Lsp Config
@@ -88,20 +87,18 @@ add({ source = 'https://github.com/neovim/nvim-lspconfig' })
 -- Completion
 add({ source = 'saghen/blink.cmp' })
 now(function()
-  require('blink.cmp').setup({
-    fuzzy = {
-      prebuilt_binaries = {
-	force_version = "v1.6.0"
-      }
-    },
-    keymap = {
-      ['<CR>'] = { 'accept', 'fallback' },
-      ['<Tab>'] = { 'accept', 'fallback' },
-    }
-  })
+    require('blink.cmp').setup({
+        fuzzy = {
+            prebuilt_binaries = {
+                force_version = "v1.6.0"
+            }
+        },
+        keymap = {
+            ['<CR>'] = { 'accept', 'fallback' },
+            ['<Tab>'] = { 'accept', 'fallback' },
+        }
+    })
 end)
-
-
 
 --
 -- USER COMMANDS
@@ -116,7 +113,7 @@ vim.api.nvim_create_user_command('GitStatus', function() Snacks.picker.git_statu
 vim.api.nvim_create_user_command('GitLog', function() Snacks.picker.git_log() end, {})
 vim.api.nvim_create_user_command('Help', function() Snacks.picker.help() end, {})
 vim.api.nvim_create_user_command('Keymaps', function() Snacks.picker.keymaps() end, {})
-vim.api.nvim_create_user_command('LazyGit', function() Snacks.LazyGit() end, {})
+vim.api.nvim_create_user_command('LazyGit', function() Snacks.lazygit() end, {})
 vim.api.nvim_create_user_command('Recent', function() Snacks.picker.recent() end, {})
 vim.api.nvim_create_user_command('Symbols', function() Snacks.picker.lsp_symbols() end, {})
 vim.api.nvim_create_user_command('WorkspaceSymbols', function() Snacks.picker.lsp_workspace_symbols() end, {})
@@ -145,5 +142,3 @@ vim.keymap.set('n', '<C-l>', ':wincmd l<CR>', { remap = true, silent = true })
 vim.keymap.set('n', '<M-C-right>', ':wincmd l<CR>', { remap = true, silent = true })
 vim.keymap.set({ 'n', 'x', 'o' }, '<leader><leader>s', function() require("flash").jump() end, { silent = true })
 vim.keymap.set('c', '<c-s>', function() require("flash").toggle() end, { silent = true })
-
-
