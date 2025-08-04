@@ -83,10 +83,14 @@ add({
 
 -- Lsp Config
 add({ source = 'https://github.com/neovim/nvim-lspconfig' })
-
 add({ source = 'mason-org/mason.nvim' })
+add({ source = 'mason-org/mason-lspconfig.nvim' })
 now(function()
     require('mason').setup()
+    require('mason-lspconfig').setup({
+        ensure_installed = { 'lua_ls' },
+        automatic_enable = { 'lua_ls' }
+    })
 end)
 
 -- Completion
