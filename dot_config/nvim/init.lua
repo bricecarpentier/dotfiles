@@ -84,6 +84,11 @@ add({
 -- Lsp Config
 add({ source = 'https://github.com/neovim/nvim-lspconfig' })
 
+add({ source = 'mason-org/mason.nvim' })
+now(function()
+    require('mason').setup()
+end)
+
 -- Completion
 add({ source = 'saghen/blink.cmp' })
 now(function()
