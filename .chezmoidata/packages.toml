@@ -2,7 +2,6 @@
 
 [packages.darwin]
 brew = [
-  "bob",
   "btop",
   "git",
   "gh",
