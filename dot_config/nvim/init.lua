@@ -126,9 +126,6 @@ end)
 
 -- AI
 add({ source = 'github/copilot.vim' })
-later(function()
-    vim.cmd(':Copilot disable')
-end)
 add({
     source = 'olimorris/codecompanion.nvim',
     depends = {
@@ -187,4 +184,5 @@ vim.keymap.set('c', '<c-s>', function() require("flash").toggle() end, { silent 
 vim.keymap.set('i', '<C-p>', '<Plug>(copilot-suggest)', { silent = false })
 vim.keymap.set('i', '<C-S-Right>', '<Plug>(copilot-accept-word)', { silent = false })
 vim.keymap.set('i', '<C-S-M-Right>', '<Plug>(copilot-accept-line)', { silent = false })
+
 
