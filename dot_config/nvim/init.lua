@@ -19,7 +19,6 @@ require('mini.deps').setup({ path = { package = path_package } })
 
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 
-
 -- Basic config
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
@@ -80,6 +79,8 @@ add({
         picker = { enabled = true }
     }
 })
+local Snacks = require('snacks')
+
 
 -- Lsp Config
 add({ source = 'https://github.com/neovim/nvim-lspconfig' })
@@ -92,8 +93,8 @@ now(function()
         automatic_enable = { 'lua_ls' }
     })
 end)
---
---
+
+
 -- LazyDev
 add({
     source = 'folke/lazydev.nvim',
@@ -123,6 +124,22 @@ now(function()
     })
 end)
 
+-- AI
+add({ source = 'github/copilot.vim' })
+later(function()
+    vim.cmd(':Copilot disable')
+end)
+add({
+    source = 'olimorris/codecompanion.nvim',
+    depends = {
+        'nvim-lua/plenary.nvim',
+        'nvim-treesitter/nvim-treesitter'
+    }
+})
+later(function ()
+    require('codecompanion').setup({})
+end)
+
 --
 -- USER COMMANDS
 --
@@ -147,6 +164,7 @@ vim.api.nvim_create_user_command('WorkspaceSymbols', function() Snacks.picker.ls
 -- KEYMAPS
 --
 vim.keymap.set('n', '=', vim.lsp.buf.format, { silent = false })
+vim.keymap.set('n', '<leader>cc', ':CodeCompanionChat Toggle<CR>', { silent = true })
 vim.keymap.set('n', '<leader>e', ':Oil<CR>', { silent = true })
 vim.keymap.set('n', '<leader>f', ':Files<CR>', { silent = true })
 vim.keymap.set('n', "grd", vim.lsp.buf.definition, { silent = true })
@@ -165,3 +183,8 @@ vim.keymap.set('n', '<C-l>', ':wincmd l<CR>', { remap = true, silent = true })
 vim.keymap.set('n', '<M-C-right>', ':wincmd l<CR>', { remap = true, silent = true })
 vim.keymap.set({ 'n', 'x', 'o' }, '<leader><leader>s', function() require("flash").jump() end, { silent = true })
 vim.keymap.set('c', '<c-s>', function() require("flash").toggle() end, { silent = true })
+
+vim.keymap.set('i', '<C-p>', '<Plug>(copilot-suggest)', { silent = false })
+vim.keymap.set('i', '<C-S-Right>', '<Plug>(copilot-accept-word)', { silent = false })
+vim.keymap.set('i', '<C-S-M-Right>', '<Plug>(copilot-accept-line)', { silent = false })
+
