@@ -3,6 +3,7 @@
 [packages.darwin]
 brew = [
   "btop",
+  "fzf",
   "git",
   "gh",
   "gpg",
@@ -28,6 +29,7 @@ cask = [
 
 [packages.linux]
 apt = [
+  "fzf",
   "git",
   "zoxide",
   "zsh"

@@ -3,6 +3,7 @@ export EDITOR=nvim # what else?
 #
 # CLI sanity
 #
+eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 
