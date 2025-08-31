@@ -138,6 +138,20 @@ later(function ()
 end)
 
 --
+-- USER FUNCTIONS
+--
+local function copyFileName(opts)
+  local filename
+  if opts.args == 'full' then
+    filename = vim.fn.expand('%:p')
+  else
+    filename = vim.fn.expand('%:t')
+  end
+  vim.fn.setreg('+', filename)
+  print('Copied to clipboard: ' .. filename)
+end
+
+--
 -- USER COMMANDS
 --
 vim.api.nvim_create_user_command('Diagnostics', function() Snacks.picker.diagnostics() end, {})
@@ -154,7 +168,13 @@ vim.api.nvim_create_user_command('LazyGit', function() Snacks.lazygit() end, {})
 vim.api.nvim_create_user_command('Recent', function() Snacks.picker.recent() end, {})
 vim.api.nvim_create_user_command('Symbols', function() Snacks.picker.lsp_symbols() end, {})
 vim.api.nvim_create_user_command('WorkspaceSymbols', function() Snacks.picker.lsp_workspace_symbols() end, {})
-
+vim.api.nvim_create_user_command('CopyFileName', copyFileName, {
+  nargs = '?',
+  complete = function(_, line)
+    return { 'full' }
+  end,
+  desc = 'Copy current file name (or full path with "full") to system clipboard'
+})
 
 
 --
