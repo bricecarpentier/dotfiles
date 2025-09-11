@@ -1,5 +1,5 @@
 format = "$character"
-right_format = "$directory$git_branch$username$hostname$time"
+right_format = "$directory$git_branch$username$time$hostname"
 
 add_newline = true
 
@@ -10,8 +10,9 @@ format = '[$path]($style)[$read_only]($read_only_style)'
 format = ' [\($branch(:$remote_branch)\)]($style)'
 
 [hostname]
-format = '[@$ssh_symbol$hostname]($style)\]'
-ssh_only = true
+format = ' 🌐'
+ssh_only = false
+detect_env_vars = ['DEVPOD']
 
 [time]
 format = ' \[[$time]($style)\]'
