@@ -29,4 +29,5 @@ fi
 
 mise use -g {{ range $k, $v := .packages.mise -}}{{ $k }}@{{ $v }} {{ end }}
 
+cargo install bob-nvim
 bob use stable

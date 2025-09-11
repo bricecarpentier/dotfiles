@@ -34,6 +34,7 @@ bob = "latest"
 fzf = "latest"
 github-cli = "latest"
 lazygit = "latest"
+rust = "latest"
 starship = "latest"
 zoxide = "latest"
 
