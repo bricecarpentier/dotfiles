@@ -1,9 +1,0 @@
-[tools]
-bob = "latest"
-fzf = "latest"
-github-cli = "latest"
-httpie-go = "latest"
-lazygit = "latest"
-starship = "latest"
-zoxide = "latest"
-

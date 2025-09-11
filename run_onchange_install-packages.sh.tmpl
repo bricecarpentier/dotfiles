@@ -24,9 +24,9 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y \
 which mise > /dev/null 2> /dev/null
 if [ "$?" = "1" ];
 then
-	curl https://mise.run | sh
+  curl https://mise.run | sh
 fi
 
-mise install
+mise use -g {{ range $k, $v := .packages.mise -}}{{ $k }}@{{ $v }} {{ end }}
 
 bob use stable

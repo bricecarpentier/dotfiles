@@ -5,7 +5,6 @@ brew = [
   "btop",
   "git",
   "gpg",
-  "mise",
   "sst/tap/opencode",
   "zsh"
 ]
@@ -28,4 +27,13 @@ apt = [
   "git",
   "zsh"
 ]
+
+[packages.mise]
+bob = "latest"
+fzf = "latest"
+github-cli = "latest"
+httpie-go = "latest"
+lazygit = "latest"
+starship = "latest"
+zoxide = "latest"
 
