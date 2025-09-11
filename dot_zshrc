@@ -5,6 +5,7 @@ export EDITOR=nvim # what else?
 #
 # CLI sanity
 #
+eval "$(mise activate zsh)"
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 
@@ -23,7 +24,6 @@ alias cm="chezmoi"
 alias vi="nvim"
 alias vim="nvim"
 alias wow="git status"
-alias z="zoxide"
 
 
 [ -f $HOME/.zshrc.extras ] && . $HOME/.zshrc.extras
