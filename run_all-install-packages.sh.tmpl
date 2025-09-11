@@ -1,0 +1,32 @@
+#!/bin/sh
+
+{{ if eq .chezmoi.os "darwin" }}
+
+brew bundle --file=/dev/stdin <<EOF
+{{ range .packages.darwin.brew -}}
+brew {{ . | quote }}
+{{ end -}}
+{{ range .packages.darwin.cask -}}
+cask {{ . | quote }}
+{{ end -}}
+EOF
+
+{{ else if eq .chezmoi.os "linux" }}
+
+sudo apt-get update -y
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y \
+{{ range .packages.linux.apt -}}
+{{ . | quote }} \
+{{ end }}
+
+{{ end -}}
+
+which mise > /dev/null 2> /dev/null
+if [ "$?" = "1" ];
+then
+	curl https://mise.run | sh
+fi
+
+mise install
+
+bob use stable

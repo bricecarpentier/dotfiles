@@ -1,8 +1,0 @@
-#!/bin/sh
-
-mkdir -p ~/.local/bin
-curl -sS https://starship.rs/install.sh | sh -s -- --yes=1 -b ~/.local/bin
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-. "$HOME/.cargo/env"
-cargo install bob-nvim --locked
-bob use stable
