@@ -30,7 +30,6 @@ apt = [
 ]
 
 [packages.mise]
-bob = "latest"
 fzf = "latest"
 github-cli = "latest"
 lazygit = "latest"
