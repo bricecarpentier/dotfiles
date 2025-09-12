@@ -2,6 +2,8 @@ export TZ=Europe/Paris
 
 export EDITOR=nvim # what else?
 
+export PATH="$HOME/.local/bin:$PATH"
+
 #
 # CLI sanity
 #
@@ -15,7 +17,6 @@ bindkey -e # Force emacs mode for zsh
 # Env
 #
 source "$HOME/.cargo/env"
-PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
 
 #
 # Aliases
