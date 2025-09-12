@@ -157,7 +157,7 @@ end
 vim.api.nvim_create_user_command('Diagnostics', function() Snacks.picker.diagnostics() end, {})
 vim.api.nvim_create_user_command('DiagnosticsBuffer', function() Snacks.picker.diagnostics_buffer() end, {})
 vim.api.nvim_create_user_command('Explore', function() Snacks.explorer() end, {})
-vim.api.nvim_create_user_command('Files', function() Snacks.picker.files() end, {})
+vim.api.nvim_create_user_command('Files', function() Snacks.picker.files({ hidden = true }) end, {})
 vim.api.nvim_create_user_command('Find', function() Snacks.picker.grep() end, {})
 vim.api.nvim_create_user_command('GitBrowse', function() Snacks.gitbrowse() end, {})
 vim.api.nvim_create_user_command('GitStatus', function() Snacks.picker.git_status() end, {})
