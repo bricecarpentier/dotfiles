@@ -17,10 +17,13 @@ sudo apt-get update -y
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y \
 {{ range .packages.linux.apt -}}
 {{ . | quote }} \
-{{ end }}
+{{ end -}}
 
 {{ end -}}
 
+#
+# Mise
+#
 which mise > /dev/null 2> /dev/null
 if [ "$?" = "1" ];
 then
@@ -29,5 +32,13 @@ fi
 
 mise use -g {{ range $k, $v := .packages.mise -}}{{ $k }}@{{ $v }} {{ end }}
 
-mise x -- cargo install bob-nvim
-bob use stable
+#
+# Bob (nvim)
+#
+which bob > /dev/null 2> /dev/null
+if [ "$?" = "1" ];
+then
+  mise x -- cargo install bob-nvim
+  PATH="$HOME/.cargo/bin:$PATH" bob use stable
+fi
+
