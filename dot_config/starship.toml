@@ -12,7 +12,7 @@ format = ' [\($branch(:$remote_branch)\)]($style)'
 [hostname]
 format = ' 🌐'
 ssh_only = false
-detect_env_vars = ['DEVPOD']
+detect_env_vars = ['DEVPOD', 'CODESPACES']
 
 [time]
 format = ' \[[$time]($style)\]'
