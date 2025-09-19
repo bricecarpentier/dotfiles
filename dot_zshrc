@@ -2,7 +2,7 @@ export TZ=Europe/Paris
 
 export EDITOR=nvim # what else?
 
-export PATH="$HOME/.local/bin:$SOME/.local/share/bob/nvim-bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.local/share/bob/nvim-bin:$PATH"
 
 #
 # CLI sanity
