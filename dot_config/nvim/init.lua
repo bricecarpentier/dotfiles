@@ -86,12 +86,16 @@ local Snacks = require('snacks')
 add({ source = 'https://github.com/neovim/nvim-lspconfig' })
 add({ source = 'mason-org/mason.nvim' })
 add({ source = 'mason-org/mason-lspconfig.nvim' })
+
 now(function()
-    require('mason').setup()
-    require('mason-lspconfig').setup({
+    require('mason-lspconfig.settings').set({
         ensure_installed = { 'lua_ls' },
         automatic_enable = { 'lua_ls' }
     })
+end)
+later(function()
+    require('mason').setup()
+    require('mason-lspconfig').setup({})
 end)
 
 
@@ -166,7 +170,7 @@ vim.api.nvim_create_user_command('Help', function() Snacks.picker.help() end, {}
 vim.api.nvim_create_user_command('Keymaps', function() Snacks.picker.keymaps() end, {})
 vim.api.nvim_create_user_command('LazyGit', function() Snacks.lazygit() end, {})
 vim.api.nvim_create_user_command('Recent', function() Snacks.picker.recent() end, {})
-vim.api.nvim_create_user_command('Symbols', function() Snacks.picker.lsp_symbols() end, {})
+vim.api.nvim_create_user_command('Symbols', function() require('snacks').picker.lsp_symbols() end, {})
 vim.api.nvim_create_user_command('WorkspaceSymbols', function() Snacks.picker.lsp_workspace_symbols() end, {})
 vim.api.nvim_create_user_command('CopyFileName', copyFileName, {
   nargs = '?',
@@ -184,6 +188,7 @@ vim.keymap.set('n', '=', vim.lsp.buf.format, { silent = false })
 vim.keymap.set('n', '<leader>cc', ':CodeCompanionChat Toggle<CR>', { silent = true })
 vim.keymap.set('n', '<leader>e', ':Oil<CR>', { silent = true })
 vim.keymap.set('n', '<leader>f', ':Files<CR>', { silent = true })
+vim.keymap.set('n', '<leader>g', ':LazyGit<BR>', { silent = true })
 vim.keymap.set('n', "grd", vim.lsp.buf.definition, { silent = true })
 vim.keymap.set('n', "grr", function() Snacks.picker.lsp_references() end, { silent = true })
 vim.keymap.set('n', "gri", function() Snacks.picker.lsp_implementations() end, { silent = true })
