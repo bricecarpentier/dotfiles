@@ -48,6 +48,17 @@ now(function()
     vim.api.nvim_set_hl(0, 'Pmenu', { bg = 'none' })
 end)
 
+-- Commenting
+later(function()
+    require('mini.comment').setup({
+        mappings = {
+            comment = '',
+            comment_line = '',
+            comment_visual = '#'
+        }
+    })
+end)
+
 -- Motions
 add({ source = 'folke/flash.nvim' })
 
