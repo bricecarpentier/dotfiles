@@ -214,7 +214,7 @@ vim.keymap.set('n', '<C-k>', ':wincmd k<CR>', { remap = true, silent = true })
 vim.keymap.set('n', '<M-C-up>', ':wincmd k<CR>', { remap = true, silent = true })
 vim.keymap.set('n', '<C-l>', ':wincmd l<CR>', { remap = true, silent = true })
 vim.keymap.set('n', '<M-C-right>', ':wincmd l<CR>', { remap = true, silent = true })
-vim.keymap.set({ 'n', 'x', 'o' }, '<leader><leader>s', function() require("flash").jump() end, { silent = true })
+vim.keymap.set({ 'n', 'x', 'o' }, 'gs', function() require("flash").jump() end, { silent = true })
 vim.keymap.set('c', '<c-s>', function() require("flash").toggle() end, { silent = true })
 
 vim.keymap.set('i', '<C-p>', '<Plug>(copilot-suggest)', { silent = false })
