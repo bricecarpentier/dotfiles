@@ -28,6 +28,7 @@ which mise > /dev/null 2> /dev/null
 if [ "$?" = "1" ];
 then
   curl https://mise.run | sh
+  export PATH="$HOME/.mise/bin:$PATH"
 fi
 
 mise use -g {{ range $k, $v := .packages.mise -}}{{ $k }}@{{ $v }} {{ end }}
@@ -42,3 +43,11 @@ then
   PATH="$HOME/.cargo/bin:$PATH" bob use stable
 fi
 
+#
+# Radicle
+#
+which rad > /dev/null 2> /dev/null
+if [ "$?" = "1" ];
+then
+  curl -sSf https://radicle.xyz/install | sh
+fi
