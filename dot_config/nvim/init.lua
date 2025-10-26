@@ -38,6 +38,18 @@ now(function()
     require('mini.icons').setup()
 end)
 
+-- Treesitter
+add({ source = 'nvim-treesitter/nvim-treesitter' })
+now(function()
+    require('nvim-treesitter.configs').setup({
+        ensure_installed = { "lua" },
+        ignore_install = {},
+        modules = {},
+        sync_install = false,
+        auto_install = false
+    })
+end)
+
 -- Theme
 add({ source = 'navarasu/onedark.nvim' }) -- Theme
 now(function()
