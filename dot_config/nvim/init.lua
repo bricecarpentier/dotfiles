@@ -152,17 +152,7 @@ now(function()
 end)
 
 -- AI
-add({ source = 'github/copilot.vim' })
-add({
-    source = 'olimorris/codecompanion.nvim',
-    depends = {
-        'nvim-lua/plenary.nvim',
-        'nvim-treesitter/nvim-treesitter'
-    }
-})
-later(function ()
-    require('codecompanion').setup({})
-end)
+-- add({ source = 'github/copilot.vim' })
 
 --
 -- USER FUNCTIONS
@@ -229,8 +219,6 @@ vim.keymap.set('n', '<M-C-right>', ':wincmd l<CR>', { remap = true, silent = tru
 vim.keymap.set({ 'n', 'x', 'o' }, 'gs', function() require("flash").jump() end, { silent = true })
 vim.keymap.set('c', '<c-s>', function() require("flash").toggle() end, { silent = true })
 
-vim.keymap.set('i', '<C-p>', '<Plug>(copilot-suggest)', { silent = false })
-vim.keymap.set('i', '<C-S-Right>', '<Plug>(copilot-accept-word)', { silent = false })
-vim.keymap.set('i', '<C-S-M-Right>', '<Plug>(copilot-accept-line)', { silent = false })
-
-
+-- vim.keymap.set('i', '<C-p>', '<Plug>(copilot-suggest)', { silent = false })
+-- vim.keymap.set('i', '<C-S-Right>', '<Plug>(copilot-accept-word)', { silent = false })
+-- vim.keymap.set('i', '<C-S-M-Right>', '<Plug>(copilot-accept-line)', { silent = false })
