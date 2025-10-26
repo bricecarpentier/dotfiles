@@ -177,12 +177,14 @@ vim.api.nvim_create_user_command('Explore', function() Snacks.explorer() end, {}
 vim.api.nvim_create_user_command('Files', function() Snacks.picker.files({ hidden = true }) end, {})
 vim.api.nvim_create_user_command('Find', function() Snacks.picker.grep() end, {})
 vim.api.nvim_create_user_command('GitBrowse', function() Snacks.gitbrowse() end, {})
+vim.api.nvim_create_user_command('GitFiles', function() Snacks.picker.git_files() end, {})
 vim.api.nvim_create_user_command('GitStatus', function() Snacks.picker.git_status() end, {})
 vim.api.nvim_create_user_command('GitLog', function() Snacks.picker.git_log() end, {})
 vim.api.nvim_create_user_command('Help', function() Snacks.picker.help() end, {})
 vim.api.nvim_create_user_command('Keymaps', function() Snacks.picker.keymaps() end, {})
 vim.api.nvim_create_user_command('LazyGit', function() Snacks.lazygit() end, {})
 vim.api.nvim_create_user_command('Recent', function() Snacks.picker.recent() end, {})
+vim.api.nvim_create_user_command('Smart', function() Snacks.picker.smart() end, {})
 vim.api.nvim_create_user_command('Symbols', function() require('snacks').picker.lsp_symbols() end, {})
 vim.api.nvim_create_user_command('WorkspaceSymbols', function() Snacks.picker.lsp_workspace_symbols() end, {})
 vim.api.nvim_create_user_command('CopyFileName', copyFileName, {
@@ -198,9 +200,11 @@ vim.api.nvim_create_user_command('CopyFileName', copyFileName, {
 -- KEYMAPS
 --
 vim.keymap.set('n', '=', vim.lsp.buf.format, { silent = false })
-vim.keymap.set('n', '<leader>cc', ':CodeCompanionChat Toggle<CR>', { silent = true })
 vim.keymap.set('n', '<leader>e', ':Oil<CR>', { silent = true })
-vim.keymap.set('n', '<leader>f', ':Files<CR>', { silent = true })
+vim.keymap.set('n', '<leader>ff', ':Files<CR>', { silent = true })
+vim.keymap.set('n', '<leader>fg', ':GitFiles<CR>', { silent = true })
+vim.keymap.set('n', '<leader>fr', ':Recent<CR>', { silent = true })
+vim.keymap.set('n', '<leader>fs', ':Smart<CR>', { silent = true })
 vim.keymap.set('n', '<leader>g', ':LazyGit<CR>', { silent = true })
 vim.keymap.set('n', "grd", vim.lsp.buf.definition, { silent = true })
 vim.keymap.set('n', "grr", function() Snacks.picker.lsp_references() end, { silent = true })
