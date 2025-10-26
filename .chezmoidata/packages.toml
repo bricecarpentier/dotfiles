@@ -3,6 +3,7 @@
 [packages.darwin]
 brew = [
   "btop",
+  "fd",
   "git",
   "gpg",
   "httpie",
