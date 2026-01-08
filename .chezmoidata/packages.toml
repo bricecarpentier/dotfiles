@@ -7,7 +7,7 @@ brew = [
   "git",
   "gpg",
   "httpie",
-  "sst/tap/opencode",
+  "opencode",
   "zsh"
 ]
 cask = [
