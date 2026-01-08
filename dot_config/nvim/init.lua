@@ -54,10 +54,6 @@ end)
 add({ source = 'navarasu/onedark.nvim' }) -- Theme
 now(function()
     require('onedark').load()
-    vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
-    vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
-    vim.api.nvim_set_hl(0, 'FloatBorder', { bg = 'none' })
-    vim.api.nvim_set_hl(0, 'Pmenu', { bg = 'none' })
 end)
 
 -- Commenting
@@ -171,6 +167,8 @@ end
 --
 -- USER COMMANDS
 --
+vim.api.nvim_create_user_command('Buffers', function() Snacks.picker.buffers() end, {})
+vim.api.nvim_create_user_command('ColorSchemes', function() Snacks.picker.colorschemes() end, {})
 vim.api.nvim_create_user_command('Diagnostics', function() Snacks.picker.diagnostics() end, {})
 vim.api.nvim_create_user_command('DiagnosticsBuffer', function() Snacks.picker.diagnostics_buffer() end, {})
 vim.api.nvim_create_user_command('Explore', function() Snacks.explorer() end, {})
@@ -201,6 +199,7 @@ vim.api.nvim_create_user_command('CopyFileName', copyFileName, {
 --
 vim.keymap.set('n', '=', vim.lsp.buf.format, { silent = false })
 vim.keymap.set('n', '<leader>e', ':Oil<CR>', { silent = true })
+vim.keymap.set('n', '<leader>fb', ':Buffers<CR>', { silent = true })
 vim.keymap.set('n', '<leader>ff', ':Files<CR>', { silent = true })
 vim.keymap.set('n', '<leader>fg', ':GitFiles<CR>', { silent = true })
 vim.keymap.set('n', '<leader>fr', ':Recent<CR>', { silent = true })
@@ -212,14 +211,6 @@ vim.keymap.set('n', "gri", function() Snacks.picker.lsp_implementations() end, {
 vim.keymap.set('n', 'gO', function() end)
 vim.keymap.del('n', 'gO')
 
-vim.keymap.set('n', '<C-h>', ':wincmd h<CR>', { remap = true, silent = true })
-vim.keymap.set('n', '<M-C-left>', ':wincmd h<CR>', { remap = true, silent = true })
-vim.keymap.set('n', '<C-j>', ':wincmd j<CR>', { remap = true, silent = true })
-vim.keymap.set('n', '<M-C-down>', ':wincmd j<CR>', { remap = true, silent = true })
-vim.keymap.set('n', '<C-k>', ':wincmd k<CR>', { remap = true, silent = true })
-vim.keymap.set('n', '<M-C-up>', ':wincmd k<CR>', { remap = true, silent = true })
-vim.keymap.set('n', '<C-l>', ':wincmd l<CR>', { remap = true, silent = true })
-vim.keymap.set('n', '<M-C-right>', ':wincmd l<CR>', { remap = true, silent = true })
 vim.keymap.set({ 'n', 'x', 'o' }, 'gs', function() require("flash").jump() end, { silent = true })
 vim.keymap.set('c', '<c-s>', function() require("flash").toggle() end, { silent = true })
 
