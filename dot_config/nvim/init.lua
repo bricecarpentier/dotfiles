@@ -217,3 +217,24 @@ vim.keymap.set('c', '<c-s>', function() require("flash").toggle() end, { silent 
 -- vim.keymap.set('i', '<C-p>', '<Plug>(copilot-suggest)', { silent = false })
 -- vim.keymap.set('i', '<C-S-Right>', '<Plug>(copilot-accept-word)', { silent = false })
 -- vim.keymap.set('i', '<C-S-M-Right>', '<Plug>(copilot-accept-line)', { silent = false })
+
+if os.getenv('MISTRAL') then
+    local mistral = require("mistral")
+    now(function() mistral.setup() end)
+    later(function() mistral.later() end)
+
+    local project = os.getenv('MISTRAL_PROJECT')
+    if not project then
+        return
+    end
+
+    local projectConfig = require("mistral." .. project)
+    if not projectConfig then
+        return
+    end
+    local repoRoot = os.getenv('REPO_ROOT')
+    projectConfig.setup(repoRoot)
+    if (projectConfig.setupLater ~= nil) then
+        later(function() projectConfig.setupLater(repoRoot) end)
+    end
+end
