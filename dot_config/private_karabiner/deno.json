@@ -1,0 +1,8 @@
+{
+	"imports": {
+		"@std/cli": "jsr:@std/cli@^1.0.25",
+		"@std/fs": "jsr:@std/fs@^1.0.21",
+		"@std/path": "jsr:@std/path@^1.1.4",
+		"@karabiner": "https://deno.land/x/karabinerts@1.36.0/deno.ts"
+	}
+}
