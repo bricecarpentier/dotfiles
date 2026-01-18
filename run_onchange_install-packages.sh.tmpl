@@ -44,10 +44,13 @@ then
 fi
 
 #
-# Radicle
+# Others
 #
-which rad > /dev/null 2> /dev/null
+{{ range $binary, $url := .packages.others -}}
+which $binary > /dev/null 2> /dev/null
 if [ "$?" = "1" ];
 then
-  curl -sSf https://radicle.xyz/install | sh
+  curl -sSf $url | sh
 fi
+{{ end }}
+

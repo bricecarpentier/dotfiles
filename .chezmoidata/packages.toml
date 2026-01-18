@@ -20,7 +20,6 @@ cask = [
   "raycast",
   "visual-studio-code",
   "whatsapp",
-  "zed"
 ]
 
 [packages.linux]
@@ -30,10 +29,16 @@ apt = [
 ]
 
 [packages.mise]
+bun = "latest"
+deno = "latest"
 fzf = "latest"
 github-cli = "latest"
 lazygit = "latest"
 rust = "latest"
 starship = "latest"
+swift = "latest"
+uv = "latest"
 zoxide = "latest"
 
+[packages.others]
+rad = "https://radicle.xyz/install"
