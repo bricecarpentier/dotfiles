@@ -13,6 +13,7 @@ import nav from "./layers/nav.ts";
 import { MakeConfig, overwriteConfig } from "./utils.ts";
 import backspace from "./rules/backspace.ts";
 import numbers from "./layers/numbers.ts";
+import functions from "./layers/functions.ts";
 
 const args = parseArgs(Deno.args);
 const [outputFile] = args._;
@@ -36,7 +37,12 @@ const simple_modifications: ManipulatorBuilder[] = [
 	map("escape").to("caps_lock"),
 ];
 
-const rules: Array<Rule | RuleBuilder> = [backspace(), nav(), numbers()];
+const rules: Array<Rule | RuleBuilder> = [
+	backspace(),
+	nav(),
+	numbers(),
+	...functions(),
+];
 
 const profileName = "Default";
 const config = MakeConfig(profileName, true, "ansi");

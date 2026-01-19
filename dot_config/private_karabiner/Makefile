@@ -4,10 +4,12 @@ default: build
 
 help:
 	@echo "Available commands:"
-	@echo "  help		Prints this message"
-	@echo "  build		Compiles profiles"
-	@echo "  install	Overwrites karabiner.json"
-	@echo "  clean		Clean build artifacts"
+	@echo "  help				Prints this message"
+	@echo "  build				Compiles profiles"
+	@echo "  install			Overwrites karabiner.json"
+	@echo "  format				Formats files"
+	@echo "  update-dotfiles	Runs cm add"
+	@echo "  clean				Clean build artifacts"
 
 build: dist/output.json
 
@@ -18,6 +20,14 @@ install: karabiner.json
 
 karabiner.json: dist/output.json
 	cp dist/output.json karabiner.json
+
+.PHONY: format
+format:
+	biome format --fix .
+
+.PHONY: update-dotfiles
+update-dotfiles:
+	chezmoi add `ls | grep -v assets | grep -v automatic_backups | grep -v dist`
 
 .PHONY: clean
 clean:

@@ -8,5 +8,5 @@ export default (): RuleBuilder =>
 		map("u").to("4"),
 		map("i").to("5"),
 		map("o").to("6"),
-        map("tab").to("left_shift")
-]);
+		map("tab").to("left_shift"),
+	]);
