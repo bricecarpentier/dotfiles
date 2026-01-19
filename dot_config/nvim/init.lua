@@ -125,7 +125,6 @@ later(function()
     require('lazydev').setup()
 end)
 
-
 -- Completion
 add({ source = 'saghen/blink.cmp' })
 later(function()
@@ -142,42 +141,6 @@ later(function()
 end)
 
 -- AI
-add({
-    source = 'milanglacier/minuet-ai.nvim',
-    depends = { 'nvim-lua/plenary.nvim' }
-})
-later(function()
-    require('minuet').setup({
-        virtualtext = {
-            auto_trigger_ft = {},
-            keymap = {
-                -- accept whole completion
-                accept = '<C-m>a',
-                -- accept one line
-                accept_line = '<C-m>A',
-                -- accept n lines (prompts for number)
-                -- e.g. "A-z 2 CR" will accept 2 lines
-                accept_n_lines = '<C-m>s',
-                -- Cycle to prev completion item, or manually invoke completion
-                prev = '<C-m>p',
-                -- Cycle to next completion item, or manually invoke completion
-                next = '<C-m>n',
-                dismiss = '<C-m>e',
-            },
-        },
-        provider_options = {
-            codestral = {
-                end_point = 'https://api.mistral.ai/v1/fim/completions',
-                api_key = 'MINUET_MISTRAL_API_KEY',
-                optional = {
-                    -- max_tokens = 256,
-                    stop = { '\n\n' }
-               }
-            }
-        }
-    })
-end)
-
 add({
   source = 'yetone/avante.nvim',
   monitor = 'main',
@@ -290,3 +253,4 @@ if os.getenv('MISTRAL') then
         later(function() projectConfig.setupLater(repoRoot) end)
     end
 end
+
