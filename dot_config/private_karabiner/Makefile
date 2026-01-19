@@ -27,7 +27,7 @@ format:
 
 .PHONY: update-dotfiles
 update-dotfiles:
-	chezmoi add `ls | grep -v assets | grep -v automatic_backups | grep -v dist`
+	chezmoi add `ls -A | grep -v assets | grep -v automatic_backups | grep -v dist`
 
 .PHONY: clean
 clean:
