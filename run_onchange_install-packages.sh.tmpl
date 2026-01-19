@@ -47,11 +47,12 @@ fi
 #
 # Others
 #
-{{ range $binary, $url := .packages.others -}}
-which $binary > /dev/null 2> /dev/null
+{{ range $binary, $url := .packages.others }}
+echo "curl -sSf {{ $url }} | sh"
+which {{ $binary }} > /dev/null 2> /dev/null
 if [ "$?" = "1" ];
 then
-  curl -sSf $url | sh
+  curl -sSf {{ $url }} | sh
 fi
 {{ end }}
 
