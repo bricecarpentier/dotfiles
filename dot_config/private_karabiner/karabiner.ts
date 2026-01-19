@@ -14,6 +14,7 @@ import { MakeConfig, overwriteConfig } from "./utils.ts";
 import backspace from "./layers/backspace.ts";
 import numbers from "./layers/numbers.ts";
 import functions from "./layers/functions.ts";
+import air60 from "./devices/air60.ts";
 
 const args = parseArgs(Deno.args);
 const [outputFile] = args._;
@@ -45,7 +46,7 @@ const rules: Array<Rule | RuleBuilder> = [
 ];
 
 const profileName = "Default";
-const config = MakeConfig(profileName, true, "ansi");
+const config = MakeConfig(profileName, true, "ansi", [air60()]);
 
 await overwriteConfig(outputFile, config);
 

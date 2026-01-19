@@ -13,7 +13,7 @@ help:
 
 build: dist/output.json
 
-dist/output.json: karabiner.ts utils.ts layers/*.ts rules/*.ts
+dist/output.json: karabiner.ts utils.ts layers/*.ts rules/*.ts devices/*.ts
 	deno run --allow-env --allow-read --allow-write karabiner.ts ./dist/output.json
 
 install: karabiner.json
