@@ -11,7 +11,7 @@ import {
 } from "@karabiner";
 import nav from "./layers/nav.ts";
 import { MakeConfig, overwriteConfig } from "./utils.ts";
-import backspace from "./rules/backspace.ts";
+import backspace from "./layers/backspace.ts";
 import numbers from "./layers/numbers.ts";
 import functions from "./layers/functions.ts";
 

@@ -5,13 +5,62 @@
 			"complex_modifications": {
 				"rules": [
 					{
-						"description": "Shift backspace => Delete forward",
+						"description": "Layer - layer-equal_sign",
 						"manipulators": [
 							{
-								"from": {
-									"key_code": "delete_or_backspace",
-									"modifiers": { "mandatory": ["shift"] }
-								},
+								"conditions": [
+									{
+										"name": "layer-equal_sign",
+										"type": "variable_unless",
+										"value": 1
+									},
+									{
+										"name": "__layer",
+										"type": "variable_unless",
+										"value": 1
+									}
+								],
+								"from": { "key_code": "equal_sign" },
+								"to": [
+									{
+										"set_variable": {
+											"name": "layer-equal_sign",
+											"value": 1
+										}
+									},
+									{
+										"set_variable": {
+											"name": "__layer",
+											"value": 1
+										}
+									}
+								],
+								"to_after_key_up": [
+									{
+										"set_variable": {
+											"name": "layer-equal_sign",
+											"value": 0
+										}
+									},
+									{
+										"set_variable": {
+											"name": "__layer",
+											"value": 0
+										}
+									}
+								],
+								"to_if_alone": [{ "key_code": "equal_sign" }],
+								"type": "basic"
+							},
+							{
+								"conditions": [
+									{
+										"name": "layer-equal_sign",
+										"type": "variable_if",
+										"value": 1
+									}
+								],
+								"from": { "key_code": "delete_or_backspace" },
 								"to": [{ "key_code": "delete_forward" }],
 								"type": "basic"
 							}
@@ -453,9 +502,7 @@
 						"product_id": 12870,
 						"vendor_id": 6645
 					},
-					"ignore": false,
-					"ignore_vendor_events": true,
-					"treat_as_built_in_keyboard": true
+					"ignore": false
 				}
 			],
 			"name": "Default",
