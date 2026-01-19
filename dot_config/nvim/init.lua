@@ -38,7 +38,7 @@ end)
 -- Treesitter
 add({ source = 'nvim-treesitter/nvim-treesitter' })
 now(function()
-    require('nvim-treesitter.config').setup({
+    require('nvim-treesitter').setup({
         ensure_installed = { "lua" },
         ignore_install = {},
         modules = {},
