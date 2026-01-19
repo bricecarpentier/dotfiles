@@ -1,26 +1,19 @@
 {
+	"global": { "check_for_updates_on_startup": false },
 	"profiles": [
 		{
-			"name": "Default",
-			"selected": true,
 			"complex_modifications": {
 				"rules": [
 					{
 						"description": "Shift backspace => Delete forward",
 						"manipulators": [
 							{
-								"type": "basic",
 								"from": {
 									"key_code": "delete_or_backspace",
-									"modifiers": {
-										"mandatory": ["shift"]
-									}
+									"modifiers": { "mandatory": ["shift"] }
 								},
-								"to": [
-									{
-										"key_code": "delete_forward"
-									}
-								]
+								"to": [{ "key_code": "delete_forward" }],
+								"type": "basic"
 							}
 						]
 					},
@@ -28,16 +21,16 @@
 						"description": "DuoLayer a s",
 						"manipulators": [
 							{
-								"type": "basic",
+								"conditions": [
+									{
+										"name": "duo-layer-a-s",
+										"type": "variable_unless",
+										"value": 1
+									}
+								],
 								"from": {
-									"simultaneous": [
-										{
-											"key_code": "a"
-										},
-										{
-											"key_code": "s"
-										}
-									],
+									"modifiers": { "optional": ["any"] },
+									"simultaneous": [{ "key_code": "a" }, { "key_code": "s" }],
 									"simultaneous_options": {
 										"to_after_key_up": [
 											{
@@ -47,21 +40,11 @@
 												}
 											}
 										]
-									},
-									"modifiers": {
-										"optional": ["any"]
 									}
 								},
 								"parameters": {
 									"basic.simultaneous_threshold_milliseconds": 25
 								},
-								"conditions": [
-									{
-										"type": "variable_unless",
-										"name": "duo-layer-a-s",
-										"value": 1
-									}
-								],
 								"to": [
 									{
 										"set_variable": {
@@ -69,10 +52,17 @@
 											"value": 1
 										}
 									}
-								]
+								],
+								"type": "basic"
 							},
 							{
-								"type": "basic",
+								"conditions": [
+									{
+										"name": "duo-layer-a-s",
+										"type": "variable_if",
+										"value": 1
+									}
+								],
 								"from": {
 									"key_code": "h",
 									"modifiers": {
@@ -80,21 +70,17 @@
 										"optional": ["shift", "option", "command"]
 									}
 								},
-								"to": [
-									{
-										"key_code": "left_arrow"
-									}
-								],
-								"conditions": [
-									{
-										"type": "variable_if",
-										"name": "duo-layer-a-s",
-										"value": 1
-									}
-								]
+								"to": [{ "key_code": "left_arrow" }],
+								"type": "basic"
 							},
 							{
-								"type": "basic",
+								"conditions": [
+									{
+										"name": "duo-layer-a-s",
+										"type": "variable_if",
+										"value": 1
+									}
+								],
 								"from": {
 									"key_code": "j",
 									"modifiers": {
@@ -102,21 +88,17 @@
 										"optional": ["shift", "option", "command"]
 									}
 								},
-								"to": [
-									{
-										"key_code": "down_arrow"
-									}
-								],
-								"conditions": [
-									{
-										"type": "variable_if",
-										"name": "duo-layer-a-s",
-										"value": 1
-									}
-								]
+								"to": [{ "key_code": "down_arrow" }],
+								"type": "basic"
 							},
 							{
-								"type": "basic",
+								"conditions": [
+									{
+										"name": "duo-layer-a-s",
+										"type": "variable_if",
+										"value": 1
+									}
+								],
 								"from": {
 									"key_code": "k",
 									"modifiers": {
@@ -124,21 +106,17 @@
 										"optional": ["shift", "option", "command"]
 									}
 								},
-								"to": [
-									{
-										"key_code": "up_arrow"
-									}
-								],
-								"conditions": [
-									{
-										"type": "variable_if",
-										"name": "duo-layer-a-s",
-										"value": 1
-									}
-								]
+								"to": [{ "key_code": "up_arrow" }],
+								"type": "basic"
 							},
 							{
-								"type": "basic",
+								"conditions": [
+									{
+										"name": "duo-layer-a-s",
+										"type": "variable_if",
+										"value": 1
+									}
+								],
 								"from": {
 									"key_code": "l",
 									"modifiers": {
@@ -146,60 +124,38 @@
 										"optional": ["shift", "option", "command"]
 									}
 								},
-								"to": [
-									{
-										"key_code": "right_arrow"
-									}
-								],
-								"conditions": [
-									{
-										"type": "variable_if",
-										"name": "duo-layer-a-s",
-										"value": 1
-									}
-								]
+								"to": [{ "key_code": "right_arrow" }],
+								"type": "basic"
 							},
 							{
-								"type": "basic",
+								"conditions": [
+									{
+										"name": "duo-layer-a-s",
+										"type": "variable_if",
+										"value": 1
+									}
+								],
 								"from": {
 									"key_code": "j",
-									"modifiers": {
-										"mandatory": ["left_shift"]
-									}
+									"modifiers": { "mandatory": ["left_shift"] }
 								},
-								"to": [
-									{
-										"key_code": "page_down"
-									}
-								],
-								"conditions": [
-									{
-										"type": "variable_if",
-										"name": "duo-layer-a-s",
-										"value": 1
-									}
-								]
+								"to": [{ "key_code": "page_down" }],
+								"type": "basic"
 							},
 							{
-								"type": "basic",
-								"from": {
-									"key_code": "k",
-									"modifiers": {
-										"mandatory": ["left_shift"]
-									}
-								},
-								"to": [
-									{
-										"key_code": "page_up"
-									}
-								],
 								"conditions": [
 									{
-										"type": "variable_if",
 										"name": "duo-layer-a-s",
+										"type": "variable_if",
 										"value": 1
 									}
-								]
+								],
+								"from": {
+									"key_code": "k",
+									"modifiers": { "mandatory": ["left_shift"] }
+								},
+								"to": [{ "key_code": "page_up" }],
+								"type": "basic"
 							}
 						]
 					},
@@ -207,16 +163,16 @@
 						"description": "DuoLayer q w",
 						"manipulators": [
 							{
-								"type": "basic",
+								"conditions": [
+									{
+										"name": "duo-layer-q-w",
+										"type": "variable_unless",
+										"value": 1
+									}
+								],
 								"from": {
-									"simultaneous": [
-										{
-											"key_code": "q"
-										},
-										{
-											"key_code": "w"
-										}
-									],
+									"modifiers": { "optional": ["any"] },
+									"simultaneous": [{ "key_code": "q" }, { "key_code": "w" }],
 									"simultaneous_options": {
 										"to_after_key_up": [
 											{
@@ -226,21 +182,11 @@
 												}
 											}
 										]
-									},
-									"modifiers": {
-										"optional": ["any"]
 									}
 								},
 								"parameters": {
 									"basic.simultaneous_threshold_milliseconds": 25
 								},
-								"conditions": [
-									{
-										"type": "variable_unless",
-										"name": "duo-layer-q-w",
-										"value": 1
-									}
-								],
 								"to": [
 									{
 										"set_variable": {
@@ -248,133 +194,92 @@
 											"value": 1
 										}
 									}
-								]
+								],
+								"type": "basic"
 							},
 							{
-								"type": "basic",
-								"from": {
-									"key_code": "j"
-								},
-								"to": [
-									{
-										"key_code": "1"
-									}
-								],
 								"conditions": [
 									{
-										"type": "variable_if",
 										"name": "duo-layer-q-w",
+										"type": "variable_if",
 										"value": 1
 									}
-								]
+								],
+								"from": { "key_code": "j" },
+								"to": [{ "key_code": "1" }],
+								"type": "basic"
 							},
 							{
-								"type": "basic",
-								"from": {
-									"key_code": "k"
-								},
-								"to": [
-									{
-										"key_code": "2"
-									}
-								],
 								"conditions": [
 									{
-										"type": "variable_if",
 										"name": "duo-layer-q-w",
+										"type": "variable_if",
 										"value": 1
 									}
-								]
+								],
+								"from": { "key_code": "k" },
+								"to": [{ "key_code": "2" }],
+								"type": "basic"
 							},
 							{
-								"type": "basic",
-								"from": {
-									"key_code": "l"
-								},
-								"to": [
-									{
-										"key_code": "3"
-									}
-								],
 								"conditions": [
 									{
-										"type": "variable_if",
 										"name": "duo-layer-q-w",
+										"type": "variable_if",
 										"value": 1
 									}
-								]
+								],
+								"from": { "key_code": "l" },
+								"to": [{ "key_code": "3" }],
+								"type": "basic"
 							},
 							{
-								"type": "basic",
-								"from": {
-									"key_code": "u"
-								},
-								"to": [
-									{
-										"key_code": "4"
-									}
-								],
 								"conditions": [
 									{
-										"type": "variable_if",
 										"name": "duo-layer-q-w",
+										"type": "variable_if",
 										"value": 1
 									}
-								]
+								],
+								"from": { "key_code": "u" },
+								"to": [{ "key_code": "4" }],
+								"type": "basic"
 							},
 							{
-								"type": "basic",
-								"from": {
-									"key_code": "i"
-								},
-								"to": [
-									{
-										"key_code": "5"
-									}
-								],
 								"conditions": [
 									{
-										"type": "variable_if",
 										"name": "duo-layer-q-w",
+										"type": "variable_if",
 										"value": 1
 									}
-								]
+								],
+								"from": { "key_code": "i" },
+								"to": [{ "key_code": "5" }],
+								"type": "basic"
 							},
 							{
-								"type": "basic",
-								"from": {
-									"key_code": "o"
-								},
-								"to": [
-									{
-										"key_code": "6"
-									}
-								],
 								"conditions": [
 									{
-										"type": "variable_if",
 										"name": "duo-layer-q-w",
+										"type": "variable_if",
 										"value": 1
 									}
-								]
+								],
+								"from": { "key_code": "o" },
+								"to": [{ "key_code": "6" }],
+								"type": "basic"
 							},
 							{
-								"type": "basic",
-								"from": {
-									"key_code": "tab"
-								},
-								"to": [
-									{
-										"key_code": "left_shift"
-									}
-								],
 								"conditions": [
 									{
-										"type": "variable_if",
 										"name": "duo-layer-q-w",
+										"type": "variable_if",
 										"value": 1
 									}
-								]
+								],
+								"from": { "key_code": "tab" },
+								"to": [{ "key_code": "left_shift" }],
+								"type": "basic"
 							}
 						]
 					},
@@ -382,10 +287,19 @@
 						"description": "Layer - layer-f9",
 						"manipulators": [
 							{
-								"type": "basic",
-								"from": {
-									"key_code": "f9"
-								},
+								"conditions": [
+									{
+										"name": "layer-f9",
+										"type": "variable_unless",
+										"value": 1
+									},
+									{
+										"name": "__layer",
+										"type": "variable_unless",
+										"value": 1
+									}
+								],
+								"from": { "key_code": "f9" },
 								"to": [
 									{
 										"set_variable": {
@@ -398,23 +312,6 @@
 											"name": "__layer",
 											"value": 1
 										}
-									}
-								],
-								"conditions": [
-									{
-										"type": "variable_unless",
-										"name": "layer-f9",
-										"value": 1
-									},
-									{
-										"type": "variable_unless",
-										"name": "__layer",
-										"value": 1
-									}
-								],
-								"to_if_alone": [
-									{
-										"key_code": "f9"
 									}
 								],
 								"to_after_key_up": [
@@ -430,61 +327,45 @@
 											"value": 0
 										}
 									}
-								]
+								],
+								"to_if_alone": [{ "key_code": "f9" }],
+								"type": "basic"
 							},
 							{
-								"type": "basic",
-								"from": {
-									"key_code": "f10"
-								},
-								"to": [
-									{
-										"consumer_key_code": "mute"
-									}
-								],
 								"conditions": [
 									{
-										"type": "variable_if",
 										"name": "layer-f9",
+										"type": "variable_if",
 										"value": 1
 									}
-								]
+								],
+								"from": { "key_code": "f10" },
+								"to": [{ "consumer_key_code": "mute" }],
+								"type": "basic"
 							},
 							{
-								"type": "basic",
-								"from": {
-									"key_code": "f11"
-								},
-								"to": [
-									{
-										"consumer_key_code": "volume_decrement"
-									}
-								],
 								"conditions": [
 									{
-										"type": "variable_if",
 										"name": "layer-f9",
+										"type": "variable_if",
 										"value": 1
 									}
-								]
+								],
+								"from": { "key_code": "f11" },
+								"to": [{ "consumer_key_code": "volume_decrement" }],
+								"type": "basic"
 							},
 							{
-								"type": "basic",
-								"from": {
-									"key_code": "f12"
-								},
-								"to": [
-									{
-										"consumer_key_code": "volume_increment"
-									}
-								],
 								"conditions": [
 									{
-										"type": "variable_if",
 										"name": "layer-f9",
+										"type": "variable_if",
 										"value": 1
 									}
-								]
+								],
+								"from": { "key_code": "f12" },
+								"to": [{ "consumer_key_code": "volume_increment" }],
+								"type": "basic"
 							}
 						]
 					},
@@ -492,10 +373,19 @@
 						"description": "Layer - layer-f3",
 						"manipulators": [
 							{
-								"type": "basic",
-								"from": {
-									"key_code": "f3"
-								},
+								"conditions": [
+									{
+										"name": "layer-f3",
+										"type": "variable_unless",
+										"value": 1
+									},
+									{
+										"name": "__layer",
+										"type": "variable_unless",
+										"value": 1
+									}
+								],
+								"from": { "key_code": "f3" },
 								"to": [
 									{
 										"set_variable": {
@@ -508,23 +398,6 @@
 											"name": "__layer",
 											"value": 1
 										}
-									}
-								],
-								"conditions": [
-									{
-										"type": "variable_unless",
-										"name": "layer-f3",
-										"value": 1
-									},
-									{
-										"type": "variable_unless",
-										"name": "__layer",
-										"value": 1
-									}
-								],
-								"to_if_alone": [
-									{
-										"key_code": "f3"
 									}
 								],
 								"to_after_key_up": [
@@ -540,85 +413,64 @@
 											"value": 0
 										}
 									}
-								]
+								],
+								"to_if_alone": [{ "key_code": "f3" }],
+								"type": "basic"
 							},
 							{
-								"type": "basic",
-								"from": {
-									"key_code": "f1"
-								},
-								"to": [
-									{
-										"consumer_key_code": "display_brightness_decrement"
-									}
-								],
 								"conditions": [
 									{
-										"type": "variable_if",
 										"name": "layer-f3",
+										"type": "variable_if",
 										"value": 1
 									}
-								]
+								],
+								"from": { "key_code": "f1" },
+								"to": [{ "consumer_key_code": "display_brightness_decrement" }],
+								"type": "basic"
 							},
 							{
-								"type": "basic",
-								"from": {
-									"key_code": "f2"
-								},
-								"to": [
-									{
-										"consumer_key_code": "display_brightness_increment"
-									}
-								],
 								"conditions": [
 									{
-										"type": "variable_if",
 										"name": "layer-f3",
+										"type": "variable_if",
 										"value": 1
 									}
-								]
+								],
+								"from": { "key_code": "f2" },
+								"to": [{ "consumer_key_code": "display_brightness_increment" }],
+								"type": "basic"
 							}
 						]
 					}
-				],
-				"parameters": {
-					"basic.to_if_alone_timeout_milliseconds": 1000,
-					"basic.to_if_held_down_threshold_milliseconds": 500,
-					"basic.to_delayed_action_delay_milliseconds": 500,
-					"basic.simultaneous_threshold_milliseconds": 50,
-					"mouse_motion_to_scroll.speed": 100
+				]
+			},
+			"devices": [
+				{
+					"identifiers": {
+						"is_keyboard": true,
+						"is_pointing_device": true,
+						"product_id": 12870,
+						"vendor_id": 6645
+					},
+					"ignore": false,
+					"ignore_vendor_events": true,
+					"treat_as_built_in_keyboard": true
 				}
-			},
-			"virtual_hid_keyboard": {
-				"keyboard_type_v2": "ansi"
-			},
+			],
+			"name": "Default",
+			"selected": true,
 			"simple_modifications": [
 				{
-					"to": [
-						{
-							"key_code": "escape"
-						}
-					],
-					"from": {
-						"key_code": "caps_lock"
-					}
+					"from": { "key_code": "caps_lock" },
+					"to": [{ "key_code": "escape" }]
 				},
 				{
-					"to": [
-						{
-							"key_code": "caps_lock"
-						}
-					],
-					"from": {
-						"key_code": "escape"
-					}
+					"from": { "key_code": "escape" },
+					"to": [{ "key_code": "caps_lock" }]
 				}
-			]
+			],
+			"virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
 		}
-	],
-	"global": {
-		"check_for_updates_on_startup": false,
-		"show_in_menu_bar": true,
-		"show_profile_name_in_menu_bar": false
-	}
+	]
 }
