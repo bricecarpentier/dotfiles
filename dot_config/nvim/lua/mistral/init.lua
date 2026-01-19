@@ -51,7 +51,7 @@ function M.setup()
 end
 
 function M.later()
-    vim.lsp.enable("pyright")
+    vim.lsp.enable("pylsp")
 end
 
 return M

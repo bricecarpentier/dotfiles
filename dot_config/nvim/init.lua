@@ -1,5 +1,3 @@
--- Mini.nvim
---
 local path_package = vim.fn.stdpath('data') .. '/site'
 local mini_path = path_package .. '/pack/deps/start/mini.nvim'
 if not vim.loop.fs_stat(mini_path) then
@@ -37,7 +35,6 @@ vim.o.exrc = true
 now(function()
     require('mini.icons').setup()
 end)
-
 -- Treesitter
 add({ source = 'nvim-treesitter/nvim-treesitter' })
 now(function()
@@ -117,7 +114,6 @@ later(function()
     require('mason-lspconfig').setup({})
 end)
 
-
 -- LazyDev
 add({
     source = 'folke/lazydev.nvim',
@@ -130,25 +126,83 @@ later(function()
 end)
 
 
-
 -- Completion
 add({ source = 'saghen/blink.cmp' })
-now(function()
+later(function()
     require('blink.cmp').setup({
         fuzzy = {
             prebuilt_binaries = {
-                force_version = "v1.6.0"
-            }
+                force_version = "v1.8.0"
+            },
         },
         keymap = {
-            ['<CR>'] = { 'accept', 'fallback' },
-            ['<Tab>'] = { 'accept', 'fallback' },
-        }
+        },
+        signature = { enabled = true }
     })
 end)
 
 -- AI
--- add({ source = 'github/copilot.vim' })
+add({
+    source = 'milanglacier/minuet-ai.nvim',
+    depends = { 'nvim-lua/plenary.nvim' }
+})
+later(function()
+    require('minuet').setup({
+        virtualtext = {
+            auto_trigger_ft = {},
+            keymap = {
+                -- accept whole completion
+                accept = '<C-m>a',
+                -- accept one line
+                accept_line = '<C-m>A',
+                -- accept n lines (prompts for number)
+                -- e.g. "A-z 2 CR" will accept 2 lines
+                accept_n_lines = '<C-m>s',
+                -- Cycle to prev completion item, or manually invoke completion
+                prev = '<C-m>p',
+                -- Cycle to next completion item, or manually invoke completion
+                next = '<C-m>n',
+                dismiss = '<C-m>e',
+            },
+        },
+        provider_options = {
+            codestral = {
+                end_point = 'https://api.mistral.ai/v1/fim/completions',
+                api_key = 'MINUET_MISTRAL_API_KEY',
+                optional = {
+                    -- max_tokens = 256,
+                    stop = { '\n\n' }
+               }
+            }
+        }
+    })
+end)
+
+add({
+  source = 'yetone/avante.nvim',
+  monitor = 'main',
+  depends = {
+    'nvim-lua/plenary.nvim',
+    'MunifTanjim/nui.nvim',
+    'echasnovski/mini.icons'
+  },
+  hooks = { post_checkout = function() vim.cmd('make') end }
+})
+later(function()
+    require('avante').setup({
+        provider = "vibe",
+        acp_providers = {
+            ["vibe"] = {
+                command = "vibe-acp"
+            }
+        },
+        strategies = {
+            agent = { adapter = "vibe", model = "devstral-latest" },
+            chat = { adapter = "vibe", model = "devstral-latest" },
+            inline = { adapter = "vibe", model = "devstral-latest" },
+        }
+    })
+end)
 
 --
 -- USER FUNCTIONS
@@ -205,6 +259,7 @@ vim.keymap.set('n', '<leader>fg', ':GitFiles<CR>', { silent = true })
 vim.keymap.set('n', '<leader>fr', ':Recent<CR>', { silent = true })
 vim.keymap.set('n', '<leader>fs', ':Smart<CR>', { silent = true })
 vim.keymap.set('n', '<leader>g', ':LazyGit<CR>', { silent = true })
+vim.keymap.set('n', '<leader>mi', ':Minuet virtualtext toggle<CR>', { silent = true })
 vim.keymap.set('n', "grd", vim.lsp.buf.definition, { silent = true })
 vim.keymap.set('n', "grr", function() Snacks.picker.lsp_references() end, { silent = true })
 vim.keymap.set('n', "gri", function() Snacks.picker.lsp_implementations() end, { silent = true })
@@ -214,9 +269,6 @@ vim.keymap.del('n', 'gO')
 vim.keymap.set({ 'n', 'x', 'o' }, 'gs', function() require("flash").jump() end, { silent = true })
 vim.keymap.set('c', '<c-s>', function() require("flash").toggle() end, { silent = true })
 
--- vim.keymap.set('i', '<C-p>', '<Plug>(copilot-suggest)', { silent = false })
--- vim.keymap.set('i', '<C-S-Right>', '<Plug>(copilot-accept-word)', { silent = false })
--- vim.keymap.set('i', '<C-S-M-Right>', '<Plug>(copilot-accept-line)', { silent = false })
 
 if os.getenv('MISTRAL') then
     local mistral = require("mistral")
