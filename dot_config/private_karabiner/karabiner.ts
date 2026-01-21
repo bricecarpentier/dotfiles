@@ -15,6 +15,7 @@ import backspace from "./layers/backspace.ts";
 import numbers from "./layers/numbers.ts";
 import functions from "./layers/functions.ts";
 import air60 from "./devices/air60.ts";
+import stopCmdShiftITriggeringMailApp from "./rules/stop-mail-app.ts";
 
 const args = parseArgs(Deno.args);
 const [outputFile] = args._;
@@ -39,6 +40,7 @@ const simple_modifications: ManipulatorBuilder[] = [
 ];
 
 const rules: Array<Rule | RuleBuilder> = [
+	stopCmdShiftITriggeringMailApp(),
 	backspace(),
 	nav(),
 	numbers(),

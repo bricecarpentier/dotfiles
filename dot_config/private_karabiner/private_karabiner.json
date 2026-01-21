@@ -6,6 +6,25 @@
 			"complex_modifications": {
 				"rules": [
 					{
+						"description": "Stop Cmd-Shift-i triggering Mail.app",
+						"manipulators": [
+							{
+								"type": "basic",
+								"from": {
+									"key_code": "i",
+									"modifiers": {
+										"mandatory": ["command", "shift"]
+									}
+								},
+								"to": [
+									{
+										"key_code": "left_shift"
+									}
+								]
+							}
+						]
+					},
+					{
 						"description": "Backspace layer",
 						"manipulators": [
 							{
