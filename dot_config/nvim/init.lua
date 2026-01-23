@@ -153,7 +153,20 @@ add({
 })
 later(function()
     require('avante').setup({
-        provider = "vibe",
+        provider = "mistral",
+        providers = {
+            ["mistral"] = {
+                __inherited_from = 'openai',
+                endpoint = "https://api.mistral.ai/v1",
+                model = "devstral-latest",
+                api_key_name = "MISTRAL_API_KEY",
+                timeout = 30000,
+                extra_request_body = {
+                    temperature = 0.75,
+                    max_tokens = 20480,
+                },
+            }
+        },
         acp_providers = {
             ["vibe"] = {
                 command = "vibe-acp"
