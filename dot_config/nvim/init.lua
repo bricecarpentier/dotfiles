@@ -142,14 +142,14 @@ end)
 
 -- AI
 add({
-  source = 'yetone/avante.nvim',
-  monitor = 'main',
-  depends = {
-    'nvim-lua/plenary.nvim',
-    'MunifTanjim/nui.nvim',
-    'echasnovski/mini.icons'
-  },
-  hooks = { post_checkout = function() vim.cmd('make') end }
+    source = 'yetone/avante.nvim',
+    monitor = 'main',
+    depends = {
+        'nvim-lua/plenary.nvim',
+        'MunifTanjim/nui.nvim',
+        'echasnovski/mini.icons'
+    },
+    hooks = { post_checkout = function() vim.cmd('make') end }
 })
 later(function()
     require('avante').setup({
@@ -253,4 +253,3 @@ if os.getenv('MISTRAL') then
         later(function() projectConfig.setupLater(repoRoot) end)
     end
 end
-
