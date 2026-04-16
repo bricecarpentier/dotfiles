@@ -1,0 +1,75 @@
+{
+  "$schema" : "https:\/\/schema.linearmouse.app\/0.10.4",
+  "schemes" : [
+    {
+      "buttons" : {
+        "universalBackForward" : true
+      },
+      "if" : {
+        "device" : {
+          "category" : "mouse",
+          "productID" : "0xb01a",
+          "productName" : "MX Anywhere 2S",
+          "serialNumber" : "48FDE440621E8A36",
+          "vendorID" : "0x46d"
+        }
+      }
+    },
+    {
+      "buttons" : {
+        "mappings" : [
+          {
+            "action" : {
+              "keyPress" : [
+                "control",
+                "r"
+              ]
+            },
+            "button" : 3,
+            "command" : false,
+            "control" : false,
+            "option" : false,
+            "shift" : false
+          },
+          {
+            "action" : {
+              "keyPress" : [
+                "enter"
+              ]
+            },
+            "button" : 4,
+            "command" : false,
+            "control" : false,
+            "option" : false,
+            "shift" : false
+          }
+        ],
+        "universalBackForward" : true
+      },
+      "if" : {
+        "device" : {
+          "category" : "mouse",
+          "productID" : "0xb01a",
+          "productName" : "LogiMousy",
+          "serialNumber" : "48FDE440621E8A36",
+          "vendorID" : "0x46d"
+        }
+      }
+    },
+    {
+      "buttons" : {
+        "universalBackForward" : true
+      },
+      "if" : {
+        "app" : "com.apple.Safari",
+        "device" : {
+          "category" : "mouse",
+          "productID" : "0xb01a",
+          "productName" : "LogiMousy",
+          "serialNumber" : "48FDE440621E8A36",
+          "vendorID" : "0x46d"
+        }
+      }
+    }
+  ]
+}
