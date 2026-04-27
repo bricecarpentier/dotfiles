@@ -37,7 +37,6 @@ github-cli = "latest"
 lazygit = "latest"
 rust = "latest"
 starship = "latest"
-swift = "latest"
 uv = "latest"
 zoxide = "latest"
 
