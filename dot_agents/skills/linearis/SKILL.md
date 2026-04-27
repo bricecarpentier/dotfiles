@@ -124,6 +124,68 @@ linearis users list                      # All users
 linearis users list --active             # Active users only
 ```
 
+## Project Updates (Pulse Updates)
+
+The linearis CLI does not support project updates natively. Use the Linear GraphQL API directly.
+
+### Authentication
+
+The linearis CLI uses the `LINEAR_API_TOKEN` environment variable (not `LINEAR_API_KEY`). Use the same env var for direct API calls. To verify: `echo $LINEAR_API_TOKEN`.
+
+### Create a project update
+
+Use a Python script to handle JSON escaping of markdown content cleanly:
+
+```python
+python3 << 'PYEOF'
+import json, os, urllib.request
+
+content = """your markdown content here"""
+
+query = """mutation ProjectUpdateCreate($projectId: String!, $body: String!, $health: ProjectUpdateHealthType!) {
+  projectUpdateCreate(input: { projectId: $projectId, body: $body, health: $health }) {
+    success
+    projectUpdate { id url createdAt }
+  }
+}"""
+
+payload = json.dumps({
+    "query": query,
+    "variables": {
+        "projectId": "<project-uuid>",
+        "body": content,
+        "health": "offTrack"  # onTrack | atRisk | offTrack
+    }
+}).encode()
+
+req = urllib.request.Request(
+    "https://api.linear.app/graphql",
+    data=payload,
+    headers={
+        "Authorization": os.environ["LINEAR_API_TOKEN"],
+        "Content-Type": "application/json"
+    },
+    method="POST"
+)
+resp = urllib.request.urlopen(req)
+print(resp.read().decode())
+PYEOF
+```
+
+### Finding the project ID
+
+Use linearis to look up the project UUID:
+
+```sh
+linearis projects list | jq -r '.[] | select(.name | test("keyword"; "i")) | "\(.id) \(.name)"'
+```
+
+### Health values
+
+- `onTrack` -- project is progressing as planned
+- `atRisk` -- project may miss deadlines
+- `offTrack` -- project has missed deadlines or is significantly behind
+
 ## File Embeds
 
 ```sh
