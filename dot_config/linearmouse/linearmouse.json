@@ -19,12 +19,7 @@
       "buttons" : {
         "mappings" : [
           {
-            "action" : {
-              "keyPress" : [
-                "control",
-                "r"
-              ]
-            },
+            "action" : "mouse.button.back",
             "button" : 3,
             "command" : false,
             "control" : false,
@@ -32,11 +27,7 @@
             "shift" : false
           },
           {
-            "action" : {
-              "keyPress" : [
-                "enter"
-              ]
-            },
+            "action" : "mouse.button.forward",
             "button" : 4,
             "command" : false,
             "control" : false,
@@ -62,6 +53,48 @@
       },
       "if" : {
         "app" : "com.apple.Safari",
+        "device" : {
+          "category" : "mouse",
+          "productID" : "0xb01a",
+          "productName" : "LogiMousy",
+          "serialNumber" : "48FDE440621E8A36",
+          "vendorID" : "0x46d"
+        }
+      }
+    },
+    {
+      "buttons" : {
+        "mappings" : [
+          {
+            "action" : {
+              "keyPress" : [
+                "control",
+                "r"
+              ]
+            },
+            "button" : 3,
+            "command" : false,
+            "control" : false,
+            "option" : false,
+            "shift" : false
+          },
+          {
+            "action" : {
+              "keyPress" : [
+                "enter"
+              ]
+            },
+            "button" : 4,
+            "command" : false,
+            "control" : false,
+            "option" : false,
+            "shift" : false
+          }
+        ],
+        "universalBackForward" : false
+      },
+      "if" : {
+        "app" : "com.mitchellh.ghostty",
         "device" : {
           "category" : "mouse",
           "productID" : "0xb01a",
