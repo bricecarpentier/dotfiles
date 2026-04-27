@@ -7,6 +7,7 @@ brew = [
   "git",
   "gpg",
   "httpie",
+  "linearis",
   "opencode",
   "zsh"
 ]
