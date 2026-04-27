@@ -1,6 +1,6 @@
 ---
 name: git-commit
-description: Write well-structured git commits. Covers message formatting, trailers (Assisted-by, Signed-off-by, Co-Authored-By), and AI attribution rules following Linux kernel conventions.
+description: Write well-structured git commits. Covers message formatting, trailers (Assisted-by, Signed-off-by, Co-Authored-By), and AI attribution rules following Linux kernel conventions. Should ALWAYS be loaded when git is involved.
 ---
 
 # Git Commit Skill
@@ -26,7 +26,9 @@ Signed-off-by: ...
 ## AI Attribution: `Assisted-by`
 
 When AI tools materially contributed to the code, add an `Assisted-by`
-trailer **before** `Signed-off-by`:
+trailer **before** `Signed-off-by`. If a `Co-Authored-By` trailer is
+already present (e.g. from the agent's default commit template), keep
+it -- do not remove it:
 
 ```
 Assisted-by: AGENT_NAME:MODEL_VERSION [TOOL1] [TOOL2]
@@ -50,6 +52,7 @@ The size calculation was missing one byte for the null terminator,
 causing heap overflows on inputs longer than 256 characters.
 
 Assisted-by: Claude:claude-3-opus coccinelle
+Co-Authored-By: Mistral Vibe <vibe@mistral.ai>
 Signed-off-by: Jane Developer <jane@example.com>
 ```
 
