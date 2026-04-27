@@ -26,5 +26,10 @@ alias vi="nvim"
 alias vim="nvim"
 alias wow="git status"
 
+#
+# Vibe
+#
+export VIBE_HOME="$HOME/.config/vibe/"
+
 
 [ -f $HOME/.zshrc.extras ] && . $HOME/.zshrc.extras
