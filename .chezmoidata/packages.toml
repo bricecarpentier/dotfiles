@@ -30,7 +30,6 @@ apt = [
 ]
 
 [packages.mise]
-biome = "latest"
 bun = "latest"
 deno = "latest"
 fzf = "latest"
