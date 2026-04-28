@@ -7,7 +7,6 @@ brew = [
   "git",
   "gpg",
   "httpie",
-  "linearis",
   "treemd",
   "zsh"
 ]
@@ -35,10 +34,14 @@ deno = "latest"
 fzf = "latest"
 github-cli = "latest"
 lazygit = "latest"
+node = "latest"
 rust = "latest"
 starship = "latest"
 uv = "latest"
 zoxide = "latest"
+
+[packages.npm]
+linearis = "latest"
 
 [packages.others]
 rad = "https://radicle.xyz/install"
