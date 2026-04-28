@@ -1,3 +1,8 @@
+---
+name: gh-pr-comments
+description: Reply to GitHub PR review comments using `gh api`. Covers inline review comments (left by reviewers on specific lines) and top-level PR comments.
+---
+
 # Skill: gh-pr-comments
 
 ## Overview
