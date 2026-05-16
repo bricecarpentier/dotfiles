@@ -1,0 +1,8 @@
+[user]
+    name = {{ .name | quote }}
+    email = {{ .gitEmail | quote }}
+    signingkey = ~/.ssh/id_ed25519
+[commit]
+    gpgsign = true
+[gpg]
+    format = ssh
