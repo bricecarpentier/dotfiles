@@ -38,7 +38,7 @@ mise use -g {{ range $k, $v := .packages.mise -}}{{ $k }}@{{ $v }} {{ end }}
 # NPM
 #
 which npm > /dev/null 2> /dev/null
-if [ "$?" = "1" ];
+if [ "$?" != "1" ];
 then
   npm install -g {{ range $k, $v := .packages.npm -}}{{ $k }}@{{ $v }} {{ end }}
 fi
