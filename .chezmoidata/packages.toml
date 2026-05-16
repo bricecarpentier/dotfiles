@@ -12,8 +12,8 @@ brew = [
   "nvim",
   "starship",
   "treemd",
-  "treesitter",
-  "treesitter-cli",
+  "tree-sitter",
+  "tree-sitter-cli",
   "zoxide",
   "zsh"
 ]
@@ -23,6 +23,7 @@ cask = [
   "font-zed-mono-nerd-font",
   "ghostty",
   "google-chrome",
+  "karabiner-elements",
   "linearmouse",
   "raycast",
   "visual-studio-code",
