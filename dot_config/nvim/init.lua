@@ -1,21 +1,9 @@
-local path_package = vim.fn.stdpath('data') .. '/site'
-local mini_path = path_package .. '/pack/deps/start/mini.nvim'
-if not vim.loop.fs_stat(mini_path) then
-    vim.cmd('echo "Installing `mini.nvim`" | redraw')
-    local clone_cmd = {
-        'git', 'clone', '--filter=blob:none',
-        -- Uncomment next line to use 'stable' branch
-        -- '--branch', 'stable',
-        'https://github.com/echasnovski/mini.nvim', mini_path
-    }
-    vim.fn.system(clone_cmd)
-    vim.cmd('packadd mini.nvim | helptags ALL')
-    vim.cmd('echo "Installed `mini.nvim`" | redraw')
-end
--- Mini.deps
-require('mini.deps').setup({ path = { package = path_package } })
+local github = function(pkg) return 'https://github.com/' .. pkg end
 
-local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
+vim.pack.add({ github('nvim-mini/mini.nvim') })
+
+local now = function(f) require('mini.misc').safely('now', f) end
+local later = function(f) require('mini.misc').safely('later', f) end
 
 -- Basic config
 vim.g.mapleader = ' '
@@ -32,23 +20,18 @@ vim.o.wrap = false
 vim.o.winborder = "rounded"
 vim.o.exrc = true
 
-now(function()
-    require('mini.icons').setup()
-end)
+require('mini.icons').setup()
+
 -- Treesitter
-add({ source = 'nvim-treesitter/nvim-treesitter' })
+vim.pack.add({ github('romus204/tree-sitter-manager.nvim') })
 now(function()
-    require('nvim-treesitter').setup({
-        ensure_installed = { "lua" },
-        ignore_install = {},
-        modules = {},
-        sync_install = false,
-        auto_install = false
+    require('tree-sitter-manager').setup({
+        auto_install = true
     })
 end)
-
+-- 
 -- Theme
-add({ source = 'navarasu/onedark.nvim' }) -- Theme
+vim.pack.add({ github('navarasu/onedark.nvim') }) -- Theme
 now(function()
     require('onedark').load()
 end)
@@ -58,22 +41,17 @@ later(function()
     require('mini.comment').setup({
         mappings = {
             comment = '',
-            comment_line = '',
+            comment_line = '#',
             comment_visual = '#'
         }
     })
 end)
 
 -- Motions
-add({ source = 'folke/flash.nvim' })
+vim.pack.add({ github('folke/flash.nvim') })
 
 -- File explorer
-add({
-    source = 'stevearc/oil.nvim',
-    depends = {
-        'echasnovski/mini.icons'
-    }
-})
+vim.pack.add({ github('stevearc/oil.nvim') })
 now(function()
     require('oil').setup({
         default_file_explorer = true,
@@ -84,24 +62,22 @@ now(function()
 end)
 
 -- Various QoL from folke
-add({
-    source = 'folke/snacks.nvim',
-    opts = {
-        explorer = { enabled = true },
-        gitbrowse = { enabled = true },
-        lazygit = { enabled = true },
-        notifier = { enabled = true },
-        notify = { enabled = true },
-        picker = { enabled = true }
-    }
+vim.pack.add({ github('folke/snacks.nvim') })
+local snacks = require('snacks')
+snacks.setup({
+    explorer = { enabled = true },
+    gitbrowse = { enabled = true },
+    lazygit = { enabled = true },
+    notifier = { enabled = true },
+    notify = { enabled = true },
+    picker = { enabled = true }
 })
-local Snacks = require('snacks')
 
 
 -- Lsp Config
-add({ source = 'https://github.com/neovim/nvim-lspconfig' })
-add({ source = 'mason-org/mason.nvim' })
-add({ source = 'mason-org/mason-lspconfig.nvim' })
+vim.pack.add({ github('neovim/nvim-lspconfig') })
+vim.pack.add({ github('mason-org/mason.nvim') })
+vim.pack.add({ github('mason-org/mason-lspconfig.nvim') })
 
 now(function()
     require('mason-lspconfig.settings').set({
@@ -115,69 +91,9 @@ later(function()
 end)
 
 -- LazyDev
-add({
-    source = 'folke/lazydev.nvim',
-    ft = 'lua',
-    enabled = true
-})
+vim.pack.add({ github('folke/lazydev.nvim') })
 later(function()
-    vim.g.lazydev_enable = true
     require('lazydev').setup()
-end)
-
--- Completion
-add({ source = 'saghen/blink.cmp' })
-later(function()
-    require('blink.cmp').setup({
-        fuzzy = {
-            prebuilt_binaries = {
-                force_version = "v1.8.0"
-            },
-        },
-        keymap = {
-        },
-        signature = { enabled = true }
-    })
-end)
-
--- AI
-add({
-    source = 'yetone/avante.nvim',
-    monitor = 'main',
-    depends = {
-        'nvim-lua/plenary.nvim',
-        'MunifTanjim/nui.nvim',
-        'echasnovski/mini.icons'
-    },
-    hooks = { post_checkout = function() vim.cmd('make') end }
-})
-later(function()
-    require('avante').setup({
-        provider = "mistral",
-        providers = {
-            ["mistral"] = {
-                __inherited_from = 'openai',
-                endpoint = "https://api.mistral.ai/v1",
-                model = "devstral-latest",
-                api_key_name = "MISTRAL_API_KEY",
-                timeout = 30000,
-                extra_request_body = {
-                    temperature = 0.75,
-                    max_tokens = 20480,
-                },
-            }
-        },
-        acp_providers = {
-            ["vibe"] = {
-                command = "vibe-acp"
-            }
-        },
-        strategies = {
-            agent = { adapter = "vibe", model = "devstral-latest" },
-            chat = { adapter = "vibe", model = "devstral-latest" },
-            inline = { adapter = "vibe", model = "devstral-latest" },
-        }
-    })
 end)
 
 --
@@ -222,8 +138,8 @@ vim.api.nvim_create_user_command('CopyFileName', copyFileName, {
     end,
     desc = 'Copy current file name (or full path with "full") to system clipboard'
 })
-
-
+-- 
+-- 
 --
 -- KEYMAPS
 --
@@ -236,34 +152,32 @@ vim.keymap.set('n', '<leader>fr', ':Recent<CR>', { silent = true })
 vim.keymap.set('n', '<leader>fs', ':Smart<CR>', { silent = true })
 vim.keymap.set('n', '<leader>g', ':LazyGit<CR>', { silent = true })
 vim.keymap.set('n', '<leader>h', ':noh<CR>', { silent = true })
-vim.keymap.set('n', '<leader>mi', ':Minuet virtualtext toggle<CR>', { silent = true })
 vim.keymap.set('n', "grd", vim.lsp.buf.definition, { silent = true })
-vim.keymap.set('n', "grr", function() Snacks.picker.lsp_references() end, { silent = true })
-vim.keymap.set('n', "gri", function() Snacks.picker.lsp_implementations() end, { silent = true })
+vim.keymap.set('n', "grr", function() snacks.picker.lsp_references() end, { silent = true })
+vim.keymap.set('n', "gri", function() snacks.picker.lsp_implementations() end, { silent = true })
 vim.keymap.set('n', 'gO', function() end)
 vim.keymap.del('n', 'gO')
 
 vim.keymap.set({ 'n', 'x', 'o' }, 'gs', function() require("flash").jump() end, { silent = true })
 vim.keymap.set('c', '<c-s>', function() require("flash").toggle() end, { silent = true })
 
-
-if os.getenv('MISTRAL') then
-    local mistral = require("mistral")
-    now(function() mistral.setup() end)
-    later(function() mistral.later() end)
-
-    local project = os.getenv('MISTRAL_PROJECT')
-    if not project then
-        return
-    end
-
-    local projectConfig = require("mistral." .. project)
-    if not projectConfig then
-        return
-    end
-    local repoRoot = os.getenv('REPO_ROOT')
-    projectConfig.setup(repoRoot)
-    if (projectConfig.setupLater ~= nil) then
-        later(function() projectConfig.setupLater(repoRoot) end)
-    end
-end
+-- if os.getenv('MISTRAL') then
+--     local mistral = require("mistral")
+--     now(function() mistral.setup() end)
+--     later(function() mistral.later() end)
+-- 
+--     local project = os.getenv('MISTRAL_PROJECT')
+--     if not project then
+--         return
+--     end
+-- 
+--     local projectConfig = require("mistral." .. project)
+--     if not projectConfig then
+--         return
+--     end
+--     local repoRoot = os.getenv('REPO_ROOT')
+--     projectConfig.setup(repoRoot)
+--     if (projectConfig.setupLater ~= nil) then
+--         later(function() projectConfig.setupLater(repoRoot) end)
+--     end
+-- end

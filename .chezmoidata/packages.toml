@@ -12,6 +12,8 @@ brew = [
   "nvim",
   "starship",
   "treemd",
+  "treesitter",
+  "treesitter-cli",
   "zoxide",
   "zsh"
 ]
